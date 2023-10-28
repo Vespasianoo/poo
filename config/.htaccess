@@ -1,0 +1,2 @@
+ErrorDocument 403 http://localhost/horus/aula07/index.php
+Deny from all

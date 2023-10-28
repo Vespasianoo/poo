@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title> Listagem de pessoas </title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    div {
+      align-self: end;
+      margin-bottom: 16px;
+    }
+
+    a {
+      font-size: 16px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: #000;
+      text-decoration: none;
+    }
+
+    a.delete {
+      color: red;
+    }
+
+    .btn {
+      display: flex;
+    }
+
+    .btn>button {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+
+      line-height: 0;
+      border: 1px solid gray;
+    }
+
+    .btn button i {
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="btn">
+    <button onclick="window.location='index.php?class=PessoaForm'">
+      <i class="ph-fill ph-plus-square"></i> Inserir
+    </button>
+  </div>
+  <table border=1>
+    <thead>
+      <tr>
+        <th>Editar</th>
+        <th>Deletar</th>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Endereço</th>
+        <th>Bairro</th>
+        <th>Telefone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {items}
+    </tbody>
+  </table>
+</body>
+
+</html>
