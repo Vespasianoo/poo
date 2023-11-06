@@ -37,7 +37,7 @@ class Pessoa
                       ':bairro'=>   $pessoa['bairro'],                  
                       ':tel'=>      $pessoa['tel']]);
     TTransaction::closeConnection();
-    return $data;
+    return $pessoa;
   }
 
   public static function find($id)
