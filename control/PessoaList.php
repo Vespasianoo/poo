@@ -4,13 +4,12 @@ require_once  'model/Pessoa.php';
 
 class PessoaList
 {
-  private $html;
-  private $items;
+    private $data;
 
-  public function __construct()
+    public function __construct()
   {
-    $this->html = file_get_contents('html/list.html');
-    $this->items = '';
+    $this->data['html']  = file_get_contents('html/list.html');
+    $this->data['items'] = '';
   }
 
   public function delete($params)
@@ -45,10 +44,10 @@ class PessoaList
         $item = str_replace('{bairro}',   $pessoa['bairro'],   $item);
         $item = str_replace('{tel}',      $pessoa['tel'],      $item);
 
-        $this->items .= $item;
+        $this->data['items'] .= $item;
       }
 
-     return $this->html = str_replace('{items}', $this->items, $this->html);
+     return $this->data['html'] = str_replace('{items}', $this->data['items'], $this->data['html']);
     }
     catch (Exception $e)
     {
@@ -65,7 +64,7 @@ class PessoaList
   public function show()
   {
     $this->load();
-    print $this->html;
+    print $this->data['html'];
     return;
   }
 }
