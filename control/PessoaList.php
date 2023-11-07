@@ -1,6 +1,6 @@
 <?php
 
-require_once  'classes/Pessoa.php';
+require_once  'model/Pessoa.php';
 
 class PessoaList
 {
