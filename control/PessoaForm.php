@@ -59,6 +59,21 @@ class PessoaForm
 
     public function __call($method, $values) 
     {
-        print "O método {$method} não existe.";
-    } 
+       return print "O método {$method} não existe.";
+    }
+    
+    public function __get($propriedade)
+    {
+       return print "Tentou acessar '{$propriedade}' inacessível.";
+    }
+
+    public function __set($propriedade, $valor) 
+    {
+       return print "Tentou gravar {$propriedade} = {$valor} mas a propriedade {$propiedade} não existe.";
+    }
+
+    public function __isset($propiedade)
+    {
+        return isset($this->data[$propiedade]);
+    }
 }

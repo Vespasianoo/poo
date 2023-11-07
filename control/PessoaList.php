@@ -54,12 +54,6 @@ class PessoaList
       return print $e->getMessage();
     }
   }
-  
-    public function __call($method, $values) 
-    {
-        print "O método {$method} não existe.";
-    } 
-
 
   public function show()
   {
@@ -67,4 +61,29 @@ class PessoaList
     print $this->data['html'];
     return;
   }
+
+    public function __call($method, $values) 
+    {
+       return print "O método {$method} não existe.";
+    }
+    
+    public function __get($propriedade)
+    {
+       return print "Tentou acessar '{$propriedade}' inacessível.";
+    }
+
+    public function __set($propriedade, $valor) 
+    {
+       return print "Tentou gravar {$propriedade} = {$valor} mas a propriedade {$propiedade} não existe.";
+    }
+
+    public function __isset($propiedade)
+    {
+        return isset($this->data[$propiedade]);
+    }
+
+    // public function __unset($propiedade)
+    // {
+    //     unset($this->data[$propriedade]);
+    // }
 }
