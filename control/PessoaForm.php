@@ -55,5 +55,10 @@ class PessoaForm
     $this->html = str_replace('{tel}',      $this->data['tel'],      $this->html);
 
     print $this->html;
-  } 
+  }
+
+    public function __call($method, $values) 
+    {
+        print "O método {$method} não existe.";
+    } 
 }

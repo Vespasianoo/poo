@@ -55,6 +55,12 @@ class PessoaList
       return print $e->getMessage();
     }
   }
+  
+    public function __call($method, $values) 
+    {
+        print "O método {$method} não existe.";
+    } 
+
 
   public function show()
   {
