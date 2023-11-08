@@ -8,9 +8,10 @@ spl_autoload_register(function($class)
     }
 });
 
-$class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'PessoaList'; 
+
+$class = isset($_REQUEST['class']) ? $_REQUEST['class'] : 'Login'; 
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : null;
-  
+
 if(class_exists($class))
 {
     $pagina = new $class($_REQUEST);
@@ -25,3 +26,6 @@ if(class_exists($class))
     print $error404;
 }
 
+// TODO - fazer o register
+// TODO - fazer o md5 no login
+// TODO - tratamento de erros nos models

@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  border-radius: 6px;
+}
+
+.form-signin input[type="password"] {
+  border-radius: 6px;
+}
+
+button.btn-primary[type="submit"] {
+  border-radius: 6px;
+  background: linear-gradient(80deg, #46a5cb 0%, #116a8d 100%);
+}

@@ -1,15 +1,38 @@
 <?php
 
 require_once  'model/Pessoa.php';
-
+// TODO - criar sessao class e instancia ela aq
 class PessoaList
 {
     private $data;
 
     public function __construct()
     {
-        $this->data['html']  = file_get_contents('html/list.html');
+        $this->startSession();
+        $this->data['html']  = file_get_contents('Layout/html/list.html');
         $this->data['items'] = '';
+    }
+
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+          header("Location: index.php?class=Login");
+        }
+    }
+
+    public function logout()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        session_destroy();
+        header("Location: index.php?class=Login");
     }
 
     public function delete($params)
@@ -34,7 +57,7 @@ class PessoaList
 
             foreach ($pessoas as $pessoa)
             {
-                $item = file_get_contents('html/item.html');
+                $item = file_get_contents('Layout/html/item.html');
 
                 $item = str_replace('{id}',       $pessoa['id'],       $item);
                 $item = str_replace('{name}',     $pessoa['name'],     $item);

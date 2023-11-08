@@ -37,4 +37,32 @@ abstract class User
         TTransaction::closeConnection();
         return;
     }
+
+    public static function authenticate($data)
+    {
+        $conn = TTransaction::getConnection();
+
+        $sql = "SELECT id, email, name, password FROM user WHERE email = :email";
+        $result = $conn->prepare($sql);
+        $result->execute([':email' => $data['email']]);
+
+        if ($result->rowCount() > 0) {
+            $user = $result->fetch(PDO::FETCH_ASSOC);
+
+            if ($password == $user['password']) {
+                return $user;
+            } else {
+                throw new Exception("Senha incorreta");
+            }
+            if (md5($data['password']) == $user['password']) {
+                return $user;
+            } else {
+                throw new Exception("Senha incorreta");
+            }
+        } else {
+            throw new Exception("Email ou senha incorretos");
+        }
+        TTransaction::closeConnection();
+        return;
+    }
 }
