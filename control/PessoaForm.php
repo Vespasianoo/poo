@@ -15,6 +15,7 @@ class PessoaForm
                         'endereco' => '',
                         'bairro'   => '',
                         'tel'      => ''];
+                        $this->startSession();
     }
 
     public function edit($params)  
@@ -26,14 +27,28 @@ class PessoaForm
         } 
         catch (Exception $e) 
         {
-            return $e->getMessage();
+            return print $e->getMessage();
         }  
+    }
+
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+          header("Location: index.php?class=Login");
+        }
     }
 
     public function save($params)
     {
         try 
         {
+            
+            $params['id_user'] = $_SESSION['user'];
             $pessoa = Pessoa::save($params);
             $this->data = $pessoa;
             $result = "Pessoa salva com sucesso <br> <a href='index.php'>Volta para pagina inicial</a>";
@@ -41,7 +56,7 @@ class PessoaForm
         } 
         catch (Exception $e) 
         {
-            return $e->getMessage();
+            return print $e->getMessage();
         }  
     }
 

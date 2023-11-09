@@ -13,17 +13,6 @@ class PessoaList
         $this->data['items'] = '';
     }
 
-    public function startSession()
-    {
-        if(!isset($_SESSION)){
-            session_start();
-        }
-
-        if(!isset($_SESSION['user']))
-        {
-          header("Location: index.php?class=Login");
-        }
-    }
 
     public function logout()
     {
@@ -53,7 +42,8 @@ class PessoaList
     {
         try
         {
-            $pessoas = Pessoa::all();
+            $id_user = $_SESSION['user']; 
+            $pessoas = Pessoa::all($id_user);
 
             foreach ($pessoas as $pessoa)
             {
@@ -108,4 +98,16 @@ class PessoaList
     // {
     //     unset($this->data[$propriedade]);
     // }
+
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+          header("Location: index.php?class=Login");
+        }
+    }
 }
