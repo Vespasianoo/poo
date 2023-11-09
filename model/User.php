@@ -49,7 +49,7 @@ abstract class User
         if ($result->rowCount() > 0) {
             $user = $result->fetch(PDO::FETCH_ASSOC);
 
-            if ($password == $user['password']) {
+            if ($data['password'] == $user['password']) {
                 return $user;
             } else {
                 throw new Exception("Senha incorreta");
