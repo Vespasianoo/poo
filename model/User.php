@@ -10,16 +10,16 @@ abstract class User
         if(empty($data['id']))
         {
             $userExist = $conn->prepare("SELECT * FROM user WHERE email = :email");
-            $userExist = $conn->execute([":email" => $data["email"]]);
+            $userExist->execute([':email' => $data['email']]);
             
             if ($userExist->rowCount() == 0) 
             {
                 $result = $conn->query("SELECT max(id) as next FROM user");
                 $row = $result->fetch();
                 $data['id'] = (int) $row['next'] + 1;
-                $hashedPassword = md5($user['password']);
+                $hashedPassword = md5($data['password']);
 
-                $sql = "INSERT INTO users (id, name, email, password)
+                $sql = "INSERT INTO user (id, name, email, password)
                             VALUES (:id, :name, :email, :password)";
             } else 
             {
@@ -48,12 +48,6 @@ abstract class User
 
         if ($result->rowCount() > 0) {
             $user = $result->fetch(PDO::FETCH_ASSOC);
-
-            if ($data['password'] == $user['password']) {
-                return $user;
-            } else {
-                throw new Exception("Senha incorreta");
-            }
             if (md5($data['password']) == $user['password']) {
                 return $user;
             } else {

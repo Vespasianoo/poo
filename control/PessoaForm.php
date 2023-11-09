@@ -69,6 +69,7 @@ class PessoaForm
 
     public function __set($propriedade, $valor) 
     {
+        // TODO - colocar esses dados no vetor data
        return print "Tentou gravar {$propriedade} = {$valor} mas a propriedade {$propiedade} não existe.";
     }
 
